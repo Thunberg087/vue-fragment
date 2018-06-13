@@ -2,11 +2,10 @@ export default {
   install(Vue) {
     Vue.directive('fragment', {
       inserted(element) {
-      	Array.from(element.childNodes).forEach(child =>
-          element.parentNode.insertBefore(child, element)
-        )
-        
-        element.parentNode.removeChild(element)
+        const fragment = document.createDocumentFragment();
+        Array.from(element.childNodes).forEach(child => fragment.appendChild(child));
+        element.parentNode.insertBefore(fragment, element);
+        element.parentNode.removeChild(element);
       }
     })
 
