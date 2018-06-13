@@ -1,0 +1,24 @@
+{
+  "name": "vue-fragments",
+  "version": "1.0.0",
+  "description": "fragment component for vuejs",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/y-nk/vue-fragments.git"
+  },
+  "keywords": [
+    "vuejs",
+    "fragment",
+    "component"
+  ],
+  "author": "Julien Barbay",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/y-nk/vue-fragments/issues"
+  },
+  "homepage": "https://github.com/y-nk/vue-fragments#readme"
+}
