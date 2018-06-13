@@ -10,7 +10,16 @@ module.exports = {
     })
 
     Vue.component('vue-fragment', {
-      template: `<div v-fragment><slot /></div>`
+      functional: true,
+      render(h, { children }) {
+        return h(
+          'div', {
+            attrs: { class: 'fragment' },
+            directives: [{ name: 'fragment' }]
+          },
+          [children]
+        )
+      }
     })
   }
 }
