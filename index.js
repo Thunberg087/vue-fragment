@@ -1,4 +1,4 @@
-export default {
+module.exports = {
   install(Vue) {
     Vue.directive('fragment', {
       inserted(element) {
