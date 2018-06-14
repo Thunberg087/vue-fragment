@@ -5,7 +5,7 @@ import ssr       from './ssr'
 export default {
   ssr,
   directive,
-  VFragment: component,
+  component,
   Plugin: {
     install: function(Vue) {
       Vue.directive('fragment', directive)
