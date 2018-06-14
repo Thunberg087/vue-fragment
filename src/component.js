@@ -1,6 +1,6 @@
-const directive = require('./directive');
+import directive from './directive'
 
-module.exports = {
+export default {
   functional: true,
   render: function(h, context) {
     return h(

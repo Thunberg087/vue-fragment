@@ -1,8 +1,8 @@
-const directive = require('./directive'),
-      component = require('./component'),
-      ssr       = require('./ssr');
+import directive from './directive'
+import component from './component'
+import ssr       from './ssr'
 
-module.exports = {
+export default {
   ssr,
   directive,
   VFragment: component,

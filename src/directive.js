@@ -1,4 +1,4 @@
-module.exports = {
+export default {
   inserted: function(element) {
     const fragment = document.createDocumentFragment();
 
