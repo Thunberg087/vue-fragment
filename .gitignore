@@ -61,5 +61,4 @@ typings/
 .next
 
 # dist bundles
-dist/*.js
-!dist
+dist

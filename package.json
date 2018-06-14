@@ -1,8 +1,8 @@
 {
   "name": "vue-fragments",
-  "version": "1.1.0",
+  "version": "1.1.2",
   "description": "fragment component for vuejs",
-  "main": "dist/index.js",
+  "main": "dist/vue-fragments.min.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "node ./rollup.build.js"
@@ -25,7 +25,7 @@
     "vue": "^2.5.16"
   },
   "files": [
-    "dist"
+    "*.md", "**/*.js"
   ],
   "homepage": "https://github.com/y-nk/vue-fragments#readme",
   "devDependencies": {
