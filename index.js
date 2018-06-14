@@ -1,25 +1,15 @@
-module.exports = {
-  install(Vue) {
-    Vue.directive('fragment', {
-      inserted(element) {
-        const fragment = document.createDocumentFragment();
-        Array.from(element.childNodes).forEach(child => fragment.appendChild(child));
-        element.parentNode.insertBefore(fragment, element);
-        element.parentNode.removeChild(element);
-      }
-    })
+const directive = require('./directive'),
+      component = require('./component'),
+      ssr       = require('./ssr');
 
-    Vue.component('vue-fragment', {
-      functional: true,
-      render(h, { children }) {
-        return h(
-          'div', {
-            attrs: { class: 'fragment' },
-            directives: [{ name: 'fragment' }]
-          },
-          [children]
-        )
-      }
-    })
+module.exports = {
+  ssr,
+  directive,
+  VFragment: component,
+  Plugin: {
+    install: function(Vue) {
+      Vue.directive('fragment', directive)
+      Vue.component('v-fragment', component)
+    }
   }
 }
