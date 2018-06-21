@@ -1,11 +1,29 @@
+const process = root => {
+  const fragment = document.createDocumentFragment();
+
+  Array.from(root.childNodes)
+    .forEach((child, i) => fragment.appendChild(child))
+
+  if (root._ns_) {
+    root._pn_.insertBefore(fragment, root._ns_);
+  }
+  else {
+    root._pn_.appendChild(fragment);  
+  }
+
+  if (root.parentNode)
+    root._pn_.removeChild(root);
+}
+
 export default {
-  inserted: function(element) {
-    const fragment = document.createDocumentFragment();
+  inserted: function(root) {
+    root._pn_ = root.parentNode;
+    root._ns_ = root.nextElementSibling;
 
-    Array.from(element.childNodes)
-         .forEach(child => fragment.appendChild(child));
-
-    element.parentNode.insertBefore(fragment, element);
-    element.parentNode.removeChild(element);
+    process(root);
+  },
+  
+  componentUpdated(root) {
+    process(root);
   }
 }
