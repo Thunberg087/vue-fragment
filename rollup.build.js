@@ -4,7 +4,7 @@ const rollup = require('rollup'),
 const i = { input: './src/index.js', plugins: [minify()] },
       o = { file: './dist/vue-fragments.min.js',
             format: 'umd',
-            name: 'VFragment'
+            name: 'VFragments'
           }
 
 async function build() {
