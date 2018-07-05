@@ -59,9 +59,7 @@ export default {
 
     // override of node ops 3/3
     element.removeChild = function(child) {
-      if (child.parentNode === element)
-        unfreeze(child);
-
+      unfreeze(child);
       return parent.removeChild(child);
     }
   },
@@ -80,14 +78,17 @@ export default {
 // we keep the configurable flag on, so we can delete the property later to bring it back to normal
 const freeze = (child, parent) => {
   Object.defineProperty(child, 'parentNode', {
-    value: parent,
     configurable: true,
-    writable: false
+    writable: false,
+    value: parent,
   });
 };
 
 // we force-delete for unfreeze, and recreate parent as null
 const unfreeze = child => {
-  delete child.parentNode;
-  child.parentNode = null;
+  Object.defineProperty(child, 'parentNode', {
+    configurable: true,
+    writable: true,
+    value: null,
+  });
 };
