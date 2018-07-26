@@ -22,5 +22,13 @@ export default {
 export default {
   abstract: true,
   directives: { 'fragment': directive },
-  template: `<div class='v-fragment' v-fragment><slot /></div>`
+  render: function(h) {
+    return h(
+      'div', {
+        attrs: { class: 'v-fragment' },
+        directives: [{ name: 'fragment' }]
+      },
+      [this.$slots.default]
+    )
+  }
 }
