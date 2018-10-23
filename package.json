@@ -29,7 +29,10 @@
   ],
   "homepage": "https://github.com/y-nk/vue-fragments#readme",
   "devDependencies": {
+    "@babel/core": "^7.1.2",
+    "@babel/preset-env": "^7.1.0",
     "rollup": "^0.60.4",
+    "rollup-plugin-babel": "^4.0.3",
     "rollup-plugin-minify-es": "^1.1.1"
   }
 }
