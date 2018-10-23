@@ -5,7 +5,9 @@
   "main": "dist/vue-fragments.min.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "node ./rollup.build.js"
+    "build": "node ./rollup.build.js",
+    "prepublish": "npm run build",
+    "postinstall": "node -e \"require('./package.json').name === 'vue-fragments' ? console.error('\n  [vue-fragment] \"vue-fragments\" is deprecated. run \"npm install vue-fragment\" (without trailing s)\n') : null\""
   },
   "repository": {
     "type": "git",
