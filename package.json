@@ -1,8 +1,9 @@
 {
   "name": "vue-fragment",
-  "version": "1.0.2",
+  "version": "1.1.0",
   "description": "fragment component for vuejs",
   "main": "dist/vue-fragment.min.js",
+  "module": "dist/vue-fragment.esm.js",
   "global": "Fragment",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
