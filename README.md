@@ -1,4 +1,4 @@
-# vue-fragments
+# vue-fragment
 ## what
 a very candide fragment component for Vue.js
 
@@ -15,18 +15,18 @@ TL;DR : I'm adding a `Fragment` component `<fragment />`.
 **The component is called `Fragment` after interesting discussions in issues/ about supporting a smooth transition to Vue3 native fragments.**
 
 ### Use
--  download the package `npm i -s vue-fragments`
+-  download the package `npm i -s vue-fragment`
 
 From here, you can:
 
 - Plugin:
     ```
-    import Fragment from 'vue-fragments'
+    import Fragment from 'vue-fragment'
     Vue.use(Fragment.Plugin)
 
     // or
 
-    import { Plugin } from 'vue-fragments'
+    import { Plugin } from 'vue-fragment'
     Vue.use(Plugin)
 
     // …
@@ -44,7 +44,7 @@ From here, you can:
 
 - Component:
     ```
-    import { Fragment } from 'vue-fragments'
+    import { Fragment } from 'vue-fragment'
 
     export const MyComponent {
       components: { VFragment },
@@ -57,6 +57,3 @@ From here, you can:
       data() { return { message: 'hello world }}
     }
     ```
-
-### Side note
-The package is named `vue-fragments` because it took some time to release the `vue-fragment` which was already taken. I plan to migrate slow
