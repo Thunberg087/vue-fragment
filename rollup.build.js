@@ -1,5 +1,7 @@
+const config = require('./package.json');
+
 const rollup = require('rollup'),
-      minify = require('rollup-plugin-minify-es')
+      minify = require('rollup-plugin-minify-es'),
       babel  = require('rollup-plugin-babel')
 
 const i = {
@@ -11,9 +13,9 @@ const i = {
           },
 
       o = {
-            file: './dist/vue-fragments.min.js',
+            file: config.main,
             format: 'umd',
-            name: 'Fragment',
+            name: config.global,
             exports: 'named',
           }
 

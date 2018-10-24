@@ -1,17 +1,17 @@
 {
   "name": "vue-fragment",
-  "version": "1.0.0",
+  "version": "1.0.2",
   "description": "fragment component for vuejs",
-  "main": "dist/vue-fragments.min.js",
+  "main": "dist/vue-fragment.min.js",
+  "global": "Fragment",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "node ./rollup.build.js",
-    "prepublish": "npm run build",
-    "postinstall": "node -e \"require('./package.json').name === 'vue-fragments' ? console.error('\n  [vue-fragment] \"vue-fragments\" is deprecated. run \"npm install vue-fragment\" (without trailing s)\n') : null\""
+    "prepublish": "npm run build"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/y-nk/vue-fragments.git"
+    "url": "git+https://github.com/y-nk/vue-fragment.git"
   },
   "keywords": [
     "vuejs",
@@ -21,7 +21,7 @@
   "author": "Julien Barbay",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/y-nk/vue-fragments/issues"
+    "url": "https://github.com/y-nk/vue-fragment/issues"
   },
   "peerDependencies": {
     "vue": "^2.5.16"
@@ -29,7 +29,7 @@
   "files": [
     "*.md", "**/*.js"
   ],
-  "homepage": "https://github.com/y-nk/vue-fragments#readme",
+  "homepage": "https://github.com/y-nk/vue-fragment#readme",
   "devDependencies": {
     "@babel/core": "^7.1.2",
     "@babel/preset-env": "^7.1.0",
