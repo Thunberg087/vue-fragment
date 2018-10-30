@@ -47,7 +47,7 @@ From here, you can:
     import { Fragment } from 'vue-fragment'
 
     export const MyComponent {
-      components: { VFragment },
+      components: { Fragment },
       template: '
       <fragment>
         <input type="text" v-model="message">
