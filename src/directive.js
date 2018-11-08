@@ -9,7 +9,9 @@ export default {
     const fragment = document.createDocumentFragment();
     const children = Array.from(element.childNodes);
     const parent   = element.parentNode;
+    const tail     = document.createComment('fragment tail');
 
+    fragment.appendChild(tail);
     children.forEach(child => fragment.appendChild(child));
 
     parent.insertBefore(fragment, element);
@@ -39,7 +41,7 @@ export default {
 
     // override of node ops 1/3
     element.appendChild = function(child) {
-      const op = parent.appendChild(child);
+      const op = parent.insertBefore(child, tail);
 
       if (child.parentNode !== element)
         freeze(child, element);
