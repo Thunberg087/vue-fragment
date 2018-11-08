@@ -6,14 +6,14 @@ export default {
     The fragment feature cannot be made with Vue.js vDOM, so we use regular DOM instead. We just transport the DOM nodes after vDOM rendering from one DOM node (the fragment's node) to its parent node.
   */
 
-   const fragment = document.createDocumentFragment();
-   const children = Array.from(element.childNodes);
-   const parent   = element.parentNode;
+    const fragment = document.createDocumentFragment();
+    const children = Array.from(element.childNodes);
+    const parent   = element.parentNode;
 
-   children.forEach(child => fragment.appendChild(child));
+    children.forEach(child => fragment.appendChild(child));
 
-   parent.insertBefore(fragment, element);
-   parent.removeChild(element);
+    parent.insertBefore(fragment, element);
+    parent.removeChild(element);
 
     /*
       There's a problem though.
@@ -28,7 +28,7 @@ export default {
       2. new nodes will be appended/inserted into fragment's DOM node, but we want them into the parent's, so we're gonna override fragment's DOM node's functions responsible for DOM manipulation which are used in the Vue.js node-ops for the web platform (https://github.com/vuejs/vue/blob/dev/src/platforms/web/runtime/node-ops.js) and redirect the call to the parent.
     */
 
-   children.forEach(child => freeze(child, element));
+    children.forEach(child => freeze(child, element));
 
     // backup of original functions to put them back in place later.
     element.__hooks__ = {
