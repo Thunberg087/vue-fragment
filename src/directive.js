@@ -8,6 +8,11 @@ export default {
 
     const fragment = document.createDocumentFragment();
     const children = Array.from(element.childNodes);
+
+    if (!element.parentNode) {
+      document.createDocumentFragment().appendChild(element);
+    }
+
     const parent   = element.parentNode;
     const tail     = document.createComment('fragment tail');
 
