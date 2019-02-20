@@ -90,7 +90,7 @@ export default {
     // add fragment attribute on the children
     if (children && children.length)
       children.forEach(child =>
-        child.data = { ...child.data, attrs: { fragment: this.name, ...child.data.attrs } }
+        child.data = { ...child.data, attrs: { fragment: this.name, ...(child.data || {}).attrs } }
       )
 
     return h(
