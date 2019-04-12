@@ -1,6 +1,6 @@
 {
   "name": "vue-fragment",
-  "version": "1.5.0",
+  "version": "1.5.1",
   "description": "fragment component for vuejs",
   "main": "dist/vue-fragment.min.js",
   "module": "dist/vue-fragment.esm.js",
@@ -28,7 +28,8 @@
     "vue": "^2.5.16"
   },
   "files": [
-    "*.md", "**/*.js"
+    "*.md",
+    "**/*.js"
   ],
   "homepage": "https://github.com/y-nk/vue-fragment#readme",
   "devDependencies": {
