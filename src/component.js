@@ -37,8 +37,6 @@ export default {
     const head = document.createComment(`fragment#${this.name}#head`)
     const tail = document.createComment(`fragment#${this.name}#tail`)
 
-    console.log("== mounted ==", this.name)
-
     container.__head = head
     container.__tail = tail
 
@@ -61,7 +59,7 @@ export default {
     }
 
     Array.from(container.childNodes)
-        .forEach(node => container.appendChild(node))
+      .forEach(node => container.appendChild(node))
 
     parent.removeChild(container)
 
