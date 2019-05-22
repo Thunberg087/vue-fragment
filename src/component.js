@@ -31,8 +31,16 @@ export default {
     const container = this.$el;
     const parent = container.parentNode;
 
+    container.__isFragment = true
+    container.__isMounted = false
+
     const head = document.createComment(`fragment#${this.name}#head`)
     const tail = document.createComment(`fragment#${this.name}#tail`)
+
+    console.log("== mounted ==", this.name)
+
+    container.__head = head
+    container.__tail = tail
 
     parent.insertBefore(head, container)
     parent.insertBefore(tail, container)
@@ -53,33 +61,68 @@ export default {
     }
 
     Array.from(container.childNodes)
-      .forEach(node => container.appendChild(node))
+        .forEach(node => container.appendChild(node))
 
     parent.removeChild(container)
 
     freeze(container, 'parentNode', parent)
     freeze(container, 'nextSibling', tail.nextSibling)
+    if (tail.nextSibling)
+      freeze(tail.nextSibling, 'previousSibling', container)
 
-    const insertBefore = parent.insertBefore;
-    parent.insertBefore = (node, ref) => {
-      insertBefore.call(parent, node, ref !== container ? ref : head)
-    }
+    container.__isMounted = true
 
-    const removeChild = parent.removeChild;
-    parent.removeChild = (node) => {
-      if (node === container) {
-        while(head.nextSibling !== tail)
-          container.removeChild(head.nextSibling)
+    if (!parent.__isFragmentParent) {
+      parent.__isFragmentParent = true
+      const insertBefore = parent.insertBefore;
+      parent.insertBefore = (node, ref) => {
+        let realRef = !!ref.__isFragment && !!ref.__isMounted ? ref.__head : ref
+        if (node.__isFragment && node.__isMounted) {
+          if (node === ref) {
+            console.error("something must be wrong")
+            return
+          }
+          freeze(node, 'parentNode', parent)
+          if (node.previousSibling)
+            freeze(node.previousSibling, 'nextSibling', node.nextSibling)
+          if (node.nextSibling)
+            freeze(node.nextSibling, 'previousSibling', node.previousSibling)
+          freeze(node, 'nextSibling', ref)
+          freeze(node, 'previousSibling', ref.previousSibling)
+          if (ref.previousSibling)
+            freeze(ref.previousSibling, 'nextSibling', node)
+          freeze(ref, 'previousSibling', node)
 
-        parent.removeChild(head)
-        parent.removeChild(tail)
-        unfreeze(container, 'parentNode')
-
-        parent.insertBefore = insertBefore
-        parent.removeChild = removeChild
+          let children = []
+          let ele = node.__head
+          while (ele !== node.__tail) {
+            children.push(ele)
+            ele = ele.nextSibling
+          }
+          children.push(node.__tail)
+          for (let child of children) {
+            insertBefore.call(parent, child, realRef)
+          }
+        } else
+          insertBefore.call(parent, node, realRef)
       }
-      else {
-        removeChild.call(parent, node)
+
+        
+      const removeChild = parent.removeChild;
+      parent.removeChild = (node) => {
+        if (node.__isFragment && node.__isMounted) {
+          while (node.__head.nextSibling !== node.__tail)
+            node.removeChild(node.__head.nextSibling)// container.removeChild(head.nextSibling)
+
+          parent.removeChild(node.__head)
+          parent.removeChild(node.__tail)
+          unfreeze(container, 'parentNode')
+
+          // parent.insertBefore = insertBefore
+          // parent.removeChild = removeChild
+        } else {
+          removeChild.call(parent, node)
+        }
       }
     }
   },
