@@ -74,8 +74,8 @@ export default {
       parent.__isFragmentParent = true
       const insertBefore = parent.insertBefore;
       parent.insertBefore = (node, ref) => {
-        let realRef = !!ref.__isFragment && !!ref.__isMounted ? ref.__head : ref
-        if (node.__isFragment && node.__isMounted) {
+        let realRef = !!ref && !!ref.__isFragment && !!ref.__isMounted ? ref.__head : ref
+        if (!!node.__isFragment && !!node.__isMounted) {
           if (node === ref) {
             console.error("something must be wrong")
             return
@@ -108,7 +108,7 @@ export default {
         
       const removeChild = parent.removeChild;
       parent.removeChild = (node) => {
-        if (node.__isFragment && node.__isMounted) {
+        if (!!node.__isFragment && !!node.__isMounted) {
           while (node.__head.nextSibling !== node.__tail)
             node.removeChild(node.__head.nextSibling)// container.removeChild(head.nextSibling)
 
