@@ -4,6 +4,7 @@
   "description": "fragment component for vuejs",
   "main": "dist/vue-fragment.min.js",
   "module": "dist/vue-fragment.esm.js",
+  "types": "types.d.ts",
   "global": "Fragment",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -29,7 +30,8 @@
   },
   "files": [
     "*.md",
-    "**/*.js"
+    "**/*.js",
+    "**/*.d.ts"
   ],
   "homepage": "https://github.com/y-nk/vue-fragment#readme",
   "devDependencies": {
