@@ -3,16 +3,6 @@
 
 ---
 
-## Disclaimer
-
-To all enthousiasts and users of this package, first, thank you. I'm quite busy since i've published 1.5.0 and totally let go of this repo. I know it sucks, but we're all busy from time to time, right?
-If someone is interested in taking lead on this, please open an issue or contact me. I'd be more than happy if someone would feel helping until Vue 3 comes up.
-
-Cheers to all,
-J.
-
----
-
 
 ## what
 a very candide fragment component for Vue.js
