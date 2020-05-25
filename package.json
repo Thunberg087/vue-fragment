@@ -13,7 +13,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/y-nk/vue-fragment.git"
+    "url": "git+https://github.com/Thunberg087/vue-fragment.git"
   },
   "keywords": [
     "vuejs",
@@ -23,7 +23,7 @@
   "author": "Julien Barbay",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/y-nk/vue-fragment/issues"
+    "url": "https://github.com/Thunberg087/vue-fragment/issues"
   },
   "peerDependencies": {
     "vue": "^2.5.16"
@@ -33,7 +33,7 @@
     "**/*.js",
     "**/*.d.ts"
   ],
-  "homepage": "https://github.com/y-nk/vue-fragment#readme",
+  "homepage": "https://github.com/Thunberg087/vue-fragment#readme",
   "devDependencies": {
     "@babel/core": "^7.1.2",
     "@babel/preset-env": "^7.1.0",
