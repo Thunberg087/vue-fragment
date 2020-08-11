@@ -22,6 +22,10 @@ export default {
     name: {
       type: String,
       default: () => Math.floor(Date.now() * Math.random()).toString(16)
+    },
+    html: {
+      type: String,
+      default: null
     }
   },
 
@@ -54,6 +58,16 @@ export default {
         })
 
     tpl.appendChild(tail)
+
+    // embed html
+    if (this.html) {
+      let template = document.createElement('template')
+      template.innerHTML = this.html
+      // copy elements over
+      Array.from(template.content.childNodes).forEach(node => {      
+        tpl.appendChild(node)
+      })
+    }
 
     let next = container.nextSibling
     parent.insertBefore(tpl, container, true)
