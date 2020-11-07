@@ -24,7 +24,7 @@ The component is called `Fragment` so you won't have to change much code when Vu
 From here, you can:
 
 - Plugin:
-    ```
+    ```js
     import Fragment from 'vue-fragment'
     Vue.use(Fragment.Plugin)
 
@@ -47,7 +47,7 @@ From here, you can:
     ```
 
 - Component:
-    ```
+    ```js
     import { Fragment } from 'vue-fragment'
 
     export const MyComponent {
