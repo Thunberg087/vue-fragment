@@ -5,7 +5,7 @@
 
 
 ## what
-a very candide fragment component for Vue.js
+A very candide fragment component for [Vue.js](https://github.com/vuejs/vue).
 
 
 ## why
@@ -42,7 +42,7 @@ From here, you can:
         <span>{{ message }}</span>
       </fragment>
       ',
-      data() { return { message: 'hello world }}
+      data() { return { message: 'hello world' }}
     }
     ```
 
@@ -58,6 +58,6 @@ From here, you can:
         <span>{{ message }}</span>
       </fragment>
       ',
-      data() { return { message: 'hello world }}
+      data() { return { message: 'hello world' }}
     }
     ```
