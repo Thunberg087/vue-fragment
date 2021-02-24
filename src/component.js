@@ -14,8 +14,6 @@ const unfreeze = (object, property, value = null) => {
   });
 };
 
-
-
 export default {
   abstract: true,
   name: 'Fragment',
@@ -24,64 +22,62 @@ export default {
     name: {
       type: String,
       default: () => Math.floor(Date.now() * Math.random()).toString(16)
+    },
+    html: {
+      type: String,
+      default: null
     }
   },
 
   mounted() {
-    const container = this.$el;
-    const parent = container.parentNode;
+    const container = this.$el
+    const parent = container.parentNode
+
+    container.__isFragment = true
+    container.__isMounted = false
 
     const head = document.createComment(`fragment#${this.name}#head`)
     const tail = document.createComment(`fragment#${this.name}#tail`)
 
-    parent.insertBefore(head, container)
-    parent.insertBefore(tail, container)
-
-    container.appendChild = (node) => {
-      parent.insertBefore(node, tail)
-      freeze(node, 'parentNode', container)
-    }
-
-    container.insertBefore = (node, ref) => {
-      parent.insertBefore(node, ref)
-      freeze(node, 'parentNode', container)
-    }
-
-    container.removeChild = (node) => {
-      parent.removeChild(node)
-      unfreeze(node, 'parentNode')
-    }
+    container.__head = head
+    container.__tail = tail
+    
+    // use document fragment to improve efficiency
+    let tpl = document.createDocumentFragment()
+    tpl.appendChild(head)
 
     Array.from(container.childNodes)
-      .forEach(node => container.appendChild(node))
+        .forEach(node => {
+            // container.appendChild(node, true)
+            let notFrChild = !node.hasOwnProperty('__isFragmentChild__')
+            tpl.appendChild(node)
+            if (notFrChild) {
+                freeze(node, 'parentNode', container)
+                freeze(node, '__isFragmentChild__', true)
+            }
+        })
 
+    tpl.appendChild(tail)
+
+    // embed html
+    if (this.html) {
+      let template = document.createElement('template')
+      template.innerHTML = this.html
+      // copy elements over
+      Array.from(template.content.childNodes).forEach(node => {      
+        tpl.appendChild(node)
+      })
+    }
+
+    let next = container.nextSibling
+    parent.insertBefore(tpl, container, true)
     parent.removeChild(container)
-
     freeze(container, 'parentNode', parent)
-    freeze(container, 'nextSibling', tail.nextSibling)
+    freeze(container, 'nextSibling', next)
+    if (next)
+        freeze(next, 'previousSibling', container)
 
-    const insertBefore = parent.insertBefore;
-    parent.insertBefore = (node, ref) => {
-      insertBefore.call(parent, node, ref !== container ? ref : head)
-    }
-
-    const removeChild = parent.removeChild;
-    parent.removeChild = (node) => {
-      if (node === container) {
-        while(head.nextSibling !== tail)
-          container.removeChild(head.nextSibling)
-
-        parent.removeChild(head)
-        parent.removeChild(tail)
-        unfreeze(container, 'parentNode')
-
-        parent.insertBefore = insertBefore
-        parent.removeChild = removeChild
-      }
-      else {
-        removeChild.call(parent, node)
-      }
-    }
+    container.__isMounted = true
   },
 
   render(h) {
