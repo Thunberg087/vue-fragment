@@ -7,7 +7,7 @@ export const SSR = ssr
 
 export const Plugin = {
   install: function(Vue) {
-    Vue.component('fragment', component)
+    Vue.component('Fragment', component)
   }
 }
 
