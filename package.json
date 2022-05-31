@@ -1,6 +1,6 @@
 {
   "name": "vue-fragment",
-  "version": "1.5.1",
+  "version": "1.5.2",
   "description": "fragment component for vuejs",
   "main": "dist/vue-fragment.min.js",
   "module": "dist/vue-fragment.esm.js",
