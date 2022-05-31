@@ -1,4 +1,4 @@
-const freeze = (object, property, value) => {
+export const freeze = (object, property, value) => {
   Object.defineProperty(object, property, {
     configurable: true,
     get() { return value; },
@@ -6,7 +6,7 @@ const freeze = (object, property, value) => {
   });
 };
 
-const unfreeze = (object, property, value = null) => {
+export const unfreeze = (object, property, value = null) => {
   Object.defineProperty(object, property, {
     configurable: true,
     writable: true,
@@ -45,7 +45,7 @@ export default {
     // use document fragment to improve efficiency
     let tpl = document.createDocumentFragment()
     tpl.appendChild(head)
-
+    
     Array.from(container.childNodes)
         .forEach(node => {
             // container.appendChild(node, true)
